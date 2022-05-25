@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
@@ -21,13 +22,16 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
 public class añadirAmigos extends JFrame {
 
-private JTable table; 
-private JTable table_1;
+	private JTable table; 
+
 
 	private JPanel contentPane;
+	private JTextField textNombreUsuario;
+	private JTextField textField;
 
 	
 	public añadirAmigos() {
@@ -41,7 +45,7 @@ private JTable table_1;
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(33, 30, 817, 596);
+		panel.setBounds(34, 24, 817, 596);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -77,18 +81,74 @@ private JTable table_1;
                 }
 			}
 		});
-		btnRefrescar.setBounds(527, 125, 165, 49);
+		btnRefrescar.setBounds(527, 178, 165, 49);
 		panel.add(btnRefrescar);
 		
-		JLabel lblNewLabel_2 = new JLabel("Nombre Usuario");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel_2.setBounds(154, 100, 118, 14);
-		panel.add(lblNewLabel_2);
+		JLabel lblNombreUsuario = new JLabel("Nombre Usuario");
+		lblNombreUsuario.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNombreUsuario.setBounds(154, 100, 118, 14);
+		panel.add(lblNombreUsuario);
+		
+		JButton btnBorrarUsuario = new JButton("Borrar Usuario");
+		btnBorrarUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String nombreUsuario = (textNombreUsuario.getText());
+                    new ControladorUsuario().borrarUsuario(nombreUsuario);
+
+                } catch(Exception error) {
+                    JOptionPane.showMessageDialog(null, "Introduce los datos correctamente");
+                    return;
+                }
+			}
+		});
+		btnBorrarUsuario.setForeground(Color.RED);
+		btnBorrarUsuario.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnBorrarUsuario.setBounds(527, 302, 165, 49);
+		panel.add(btnBorrarUsuario);
+		
+		textNombreUsuario = new JTextField();
+		textNombreUsuario.setBounds(527, 271, 165, 20);
+		panel.add(textNombreUsuario);
+		textNombreUsuario.setColumns(10);
+		
+		
+		
+		JButton btnModificarNombre = new JButton("Modificar Nombre");
+		btnModificarNombre.addActionListener(new ActionListener() {
+			 public void actionPerformed(ActionEvent e) {
+				  try {
+	                   Usuario usuario = crearUsuarioDesdeFormulario();
+	                    new ControladorUsuario().modificarUsuario(usuario);
+	                } catch(Exception error) {
+	                    JOptionPane.showMessageDialog(null, "Introduce los datos correctamente");
+	                    return;
+	                } 
+			}
+		}); 
+		btnModificarNombre.setForeground(Color.RED);
+		btnModificarNombre.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnModificarNombre.setBounds(527, 413, 165, 49);
+		panel.add(btnModificarNombre);
+		
+		textField = new JTextField();
+		textField.setBounds(527, 383, 165, 20);
+		panel.add(textField);
+		textField.setColumns(10);
 		
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(añadirAmigos.class.getResource("/Imagenes/Fondo.jpg")));
 		lblNewLabel.setBounds(0, 0, 884, 661);
 		contentPane.add(lblNewLabel);
+		
+		
+	}
+	
+	private Usuario crearUsuarioDesdeFormulario() {
+        String nombreUsuario = textNombreUsuario.getText();
+
+        Usuario usuario = new Usuario(nombreUsuario);
+        return usuario;
 	}
 }

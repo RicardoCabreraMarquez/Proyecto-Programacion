@@ -19,8 +19,14 @@ public class ControladorUsuario {
         return usuarios;
     }
 	
-	public void borrarProducto(String nombreUsuario) {
-        new ModeloUsuario().borrarProducto(nombreUsuario);
-        JOptionPane.showMessageDialog(null, "¡Has borrado correctamente el producto!");
+	public void borrarUsuario(String nombreUsuario) {
+        new ModeloUsuario().borrarUsuario(nombreUsuario);
+        JOptionPane.showMessageDialog(null, "¡Has borrado correctamente el Usuario!");
+    }
+	
+	public void modificarUsuario(Usuario usuario) {
+        new ModeloUsuario().modificarUsuario(usuario);
+        JOptionPane.showMessageDialog(null, "¡Has modificado el usuario!");
+
     }
 }

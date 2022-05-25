@@ -24,22 +24,28 @@ public class ModeloUsuario {
 	
 	public static ArrayList<Usuario> refrescarUsuarios(){
 
-        ArrayList<Usuario> productos = new ArrayList<Usuario>();
+        ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
         ResultSet resultado = Conexion.ejecutarSentencia("SELECT NOMBREUSUARIO FROM usuario;");
 
         try {
             while(resultado.next()) {
                 String nombre = resultado.getString("NOMBREUSUARIO");
-                productos.add(new Usuario(nombre));
+                usuarios.add(new Usuario(nombre));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return productos;
+        return usuarios;
     }
 	
-	public void borrarProducto(String nombreUsuario) {
-        Conexion.ejecutarUpdate("DELETE FROM NOMBREUSUARIO WHERE id_prod="+nombreUsuario+";");
+	public void borrarUsuario(String nombreUsuario) {
+        Conexion.ejecutarUpdate("DELETE FROM USUARIO WHERE NOMBREUSUARIO='"+nombreUsuario+"';");
+    }
+	
+	public void modificarUsuario(Usuario usuario) {
+		String nombreUsuario = usuario.getNombreUsuario();
+
+        Conexion.ejecutarUpdate("UPDATE USUARIO SET NOMBREUSUARIO='"+nombreUsuario+"' WHERE NOMBREUSUARIO = '"+nombreUsuario+"';");
     }
 	
 }

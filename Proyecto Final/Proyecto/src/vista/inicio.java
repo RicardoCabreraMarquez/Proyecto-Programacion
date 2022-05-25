@@ -83,14 +83,12 @@ public class inicio extends JFrame {
 		panel.add(lblNombreUsuario);
 
 		
-		
-		
-		
-		
 		JLabel lblfondo = new JLabel("");
 		lblfondo.setIcon(new ImageIcon(inicio.class.getResource("/Imagenes/Fondo.jpg")));
 		lblfondo.setBounds(0, 0, 884, 661);
 		contentPane.add(lblfondo);
+		
+		
 		
 		btnFoto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -106,15 +104,38 @@ public class inicio extends JFrame {
 						panel.add(lblNewLabel_2);
 				     	lblNewLabel_2.setIcon(new ImageIcon(path));
 
-						JButton btnNewButton_1 = new JButton("");
-						btnNewButton_1.setIcon(new ImageIcon(inicio.class.getResource("/Imagenes/like.jpg")));
-						btnNewButton_1.setBounds(200, 458, 67, 40);
-						panel.add(btnNewButton_1);
+						JButton btnLike = new JButton("");
+						btnLike.setIcon(new ImageIcon(inicio.class.getResource("/Imagenes/like.jpg")));
+						btnLike.setBounds(200, 458, 67, 40);
+						panel.add(btnLike);
 						
-						JButton btnNewButton_1_1 = new JButton("");
-						btnNewButton_1_1.setIcon(new ImageIcon(inicio.class.getResource("/Imagenes/dislike.jpg")));
-						btnNewButton_1_1.setBounds(308, 458, 67, 40);
-						panel.add(btnNewButton_1_1);
+						
+						btnLike.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								int votos = 0;
+								votos = votos + 1;
+								
+								JLabel lblLike = new JLabel(Integer.toString(votos));
+								lblLike.setBounds(230, 500, 17, 22);
+								panel.add(lblLike);
+							}
+						});
+						
+						JButton btnDislike = new JButton("");
+						btnDislike.setIcon(new ImageIcon(inicio.class.getResource("/Imagenes/dislike.jpg")));
+						btnDislike.setBounds(308, 458, 67, 40);
+						panel.add(btnDislike);
+						
+						btnDislike.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								int votos = 0;
+								votos = votos + 1;
+								
+								JLabel lbDislike = new JLabel(Integer.toString(votos));
+								lbDislike.setBounds(342, 500, 17, 22);
+								panel.add(lbDislike);
+							}
+						});
 			
 				    }
 				   
