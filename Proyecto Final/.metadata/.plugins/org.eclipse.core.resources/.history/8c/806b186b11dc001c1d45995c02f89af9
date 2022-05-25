@@ -1,0 +1,91 @@
+package vista;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import beans.Usuario;
+import controlador.ControladorUsuario;
+
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+
+public class añadirAmigos extends JFrame {
+
+private JTable table; 
+private JTable table_1;
+
+	private JPanel contentPane;
+
+	
+	public añadirAmigos() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 900, 700);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		DefaultTableModel dtm = new DefaultTableModel();
+		table = new JTable(dtm);
+		table.setBounds(38, 99, 349, 407);
+		contentPane.add(table);
+        dtm.addColumn("NOMBREUSUARIO");
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		panel.setBounds(33, 30, 817, 596);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Usuarios de Digicupid :");
+		lblNewLabel_1.setForeground(Color.RED);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		lblNewLabel_1.setBounds(43, 45, 372, 43);
+		panel.add(lblNewLabel_1);
+		
+		JButton btnRefrescar = new JButton("Refrescar");
+		btnRefrescar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Usuario> usuarios = new ControladorUsuario().refrescartodosUsuarios();
+                dtm.getDataVector().removeAllElements();
+                dtm.fireTableDataChanged();
+
+                // Montar los datos recogidos en la tabla
+                
+                for(Usuario usuario : usuarios){
+                    Object[] fila = new Object[1];
+                    fila[0] = usuario.getNombreUsuario();
+           
+
+                    dtm.addRow(fila);
+                }
+			}
+		});
+		btnRefrescar.setBounds(527, 125, 165, 49);
+		panel.add(btnRefrescar);
+		
+		
+		
+		
+		
+		
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(añadirAmigos.class.getResource("/Imagenes/Fondo.jpg")));
+		lblNewLabel.setBounds(0, 0, 884, 661);
+		contentPane.add(lblNewLabel);
+	}
+}

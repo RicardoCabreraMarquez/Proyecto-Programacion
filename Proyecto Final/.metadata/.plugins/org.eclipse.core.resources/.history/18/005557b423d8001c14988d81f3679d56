@@ -1,0 +1,21 @@
+package modelo;
+
+import bbdd.Conexion;
+import beans.Usuario;
+
+public class ModeloUsuario {
+	
+	public void insertarUsuario(Usuario usuario) {
+		String nombre = usuario.getNombreUsuario();
+		String correoElectronico = usuario.getCorreoElectronico();
+		String nombreUsuario = usuario.getCorreoElectronico();
+		String contraseña = usuario.getContraseña();
+		String foto = usuario.getFoto();
+		
+		Conexion.ejecutarUpdate(
+				"INSERT INTO usuario (NOMBRE, CORREOELECTRONICO, NOMBREUSUARIO, CONTRASEÑA, FOTO)"+
+				" VALUES ('"+nombre+"', '"+correoElectronico+"','"+nombreUsuario+"', '"+contraseña+"','"+foto+"');"
+				
+		);
+	}
+}
