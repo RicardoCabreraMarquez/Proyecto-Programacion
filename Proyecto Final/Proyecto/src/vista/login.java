@@ -5,7 +5,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.ControladorUsuario;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.CardLayout;
@@ -16,6 +20,7 @@ import java.awt.Toolkit;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JCheckBox;
 
 public class login extends JFrame {
 
@@ -66,23 +71,43 @@ public class login extends JFrame {
 		lblNewLabel_1_1.setBounds(268, 274, 91, 14);
 		panel.add(lblNewLabel_1_1);
 		
+		JCheckBox chckbxRecuerdame = new JCheckBox("Recuerdame");
+		chckbxRecuerdame.setBackground(Color.WHITE);
+		chckbxRecuerdame.setFont(new Font("Tahoma", Font.BOLD, 13));
+		chckbxRecuerdame.setBounds(336, 354, 110, 23);
+		panel.add(chckbxRecuerdame);
+		
 		JButton btnEntrar = new JButton("ENTRAR");
 		btnEntrar.setForeground(new Color(255, 255, 255));
 		btnEntrar.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new inicio().setVisible(true);
-				dispose();
+				if (chckbxRecuerdame.isSelected()) {
+					
+					String nombreUsuario = (textUsuarioInicio.getText());
+					String contraseña = (textContrasenaInicio.getText());
+					
+					new ControladorUsuario().crearFicheroUsuario(nombreUsuario, contraseña);
+					
+					new inicio().setVisible(true);
+					dispose();
+				} else {
+					new inicio().setVisible(true);
+					dispose();
+					JOptionPane.showMessageDialog(null, "¡Has Entrado en modo invitado!");
+				}
 			}
 		});
-		btnEntrar.setBounds(324, 363, 139, 49);
+		btnEntrar.setBounds(324, 395, 139, 49);
 		btnEntrar.setBackground(new Color(255,52,51));
 		panel.add(btnEntrar);
 		
 		JLabel lblNewLabel_2 = new JLabel("\u00BFNo tienes cuenta?");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_2.setBounds(336, 441, 116, 14);
+		lblNewLabel_2.setBounds(336, 473, 116, 14);
 		panel.add(lblNewLabel_2);
+		
+		
 		
 		JButton btnRegistrate = new JButton("Registrate.");
 		btnRegistrate.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -91,12 +116,14 @@ public class login extends JFrame {
 		btnRegistrate.setBorderPainted(false);
 		btnRegistrate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new registro().setVisible(true);
-				dispose();
+					new registro().setVisible(true);
+					dispose();
 			}
 		});
-		btnRegistrate.setBounds(336, 455, 110, 30);
+		btnRegistrate.setBounds(336, 488, 110, 30);
 		panel.add(btnRegistrate);
+		
+		
 		
 		
 		JLabel lblfondo = new JLabel("");

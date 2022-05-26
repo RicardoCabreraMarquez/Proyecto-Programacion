@@ -1,5 +1,6 @@
 package modelo;
 
+import java.io.FileWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -44,8 +45,23 @@ public class ModeloUsuario {
 	
 	public void modificarUsuario(Usuario usuario) {
 		String nombreUsuario = usuario.getNombreUsuario();
+		String nombre = usuario.getNombre();
+ 
+        Conexion.ejecutarUpdate("UPDATE USUARIO SET NOMBREUSUARIO='"+nombreUsuario+"' WHERE NOMBRE = '"+nombre+"';");
+    }	
+	
+	public void crearFichero(String nombreUsuario, String contraseña) {
+		FileWriter fichero = null;
+		
+		try {
+            fichero = new FileWriter(nombreUsuario+".txt");
+            
+            fichero.write("Username: " + nombreUsuario + "\nContrasena: " + contraseña);
+            fichero.close();
 
-        Conexion.ejecutarUpdate("UPDATE USUARIO SET NOMBREUSUARIO='"+nombreUsuario+"' WHERE NOMBREUSUARIO = '"+nombreUsuario+"';");
-    }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+	}
 	
 }

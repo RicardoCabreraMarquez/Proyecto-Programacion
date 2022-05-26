@@ -147,7 +147,7 @@ public class añadirAmigos extends JFrame {
 	
 	private Usuario crearUsuarioDesdeFormulario() {
         String nombreUsuario = textNombreUsuario.getText();
-
+        		
         Usuario usuario = new Usuario(nombreUsuario);
         return usuario;
 	}

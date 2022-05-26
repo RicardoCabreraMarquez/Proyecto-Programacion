@@ -27,6 +27,9 @@ public class ControladorUsuario {
 	public void modificarUsuario(Usuario usuario) {
         new ModeloUsuario().modificarUsuario(usuario);
         JOptionPane.showMessageDialog(null, "¡Has modificado el usuario!");
-
     }
+	
+	public void crearFicheroUsuario(String nombreUsuario, String contraseña) {
+		new ModeloUsuario().crearFichero(nombreUsuario, contraseña);
+	}
 }

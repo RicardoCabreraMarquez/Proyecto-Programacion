@@ -9,7 +9,8 @@
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="controlador.ControladorUsuario"/>
     <fullyQualifiedTypeName name="beans.Usuario"/>
     <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+    <fullyQualifiedTypeName name="java.io.FileWriter"/>
+    <fullyQualifiedTypeName name="controlador.ControladorUsuario"/>
 </qualifiedTypeNameHistroy>
